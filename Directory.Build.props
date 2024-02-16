@@ -2,7 +2,7 @@
 <Project>
   <PropertyGroup>
     <Authors>Andrey G.</Authors>
-    <Company>Mt-Rele</Company>
+    <Company>Mt-Relay</Company>
     <Copyright>Copyright Mt-Relay 1993-2024.</Copyright>
     <NeutralLanguage>ru-RU</NeutralLanguage>
     <RepositoryType>git</RepositoryType>
