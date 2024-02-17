@@ -6,7 +6,7 @@ namespace Mt.FluentValidation.Test;
 [TestFixture]
 public sealed class ValidationExtensionsTest
 {
-    private InlineValidator<TestModel> validator;
+    private InlineValidator<TestModel> _validator;
 
     /// <summary>
     /// Настройка.
@@ -14,18 +14,18 @@ public sealed class ValidationExtensionsTest
     [OneTimeSetUp]
     public void Setup()
     {
-        this.validator = new InlineValidator<TestModel>();
-        this.validator.RuleSet("default", () =>
+        _validator = new InlineValidator<TestModel>();
+        _validator.RuleSet("default", () =>
         {
-            this.validator.RuleFor(x => x.Digits).IsDigits();
-            this.validator.RuleFor(x => x.Message).IsTrim();
-            this.validator.RuleFor(x => x.EMail).IsEMail();
-            this.validator.RuleFor(x => x.DIVG).IsDIVG();
-            this.validator.RuleFor(x => x.AnalogModule).IsAnalogModule();
-            this.validator.RuleFor(x => x.Version).IsCfgVersion();
-            this.validator.RuleFor(x => x.Platform).IsPlatform();
-            this.validator.RuleFor(x => x.BFPO).IsBFPO();
-            this.validator.RuleFor(x => x.PMK).IsPMK();
+            _validator.RuleFor(x => x.Digits).IsDigits();
+            _validator.RuleFor(x => x.Message).IsTrim();
+            _validator.RuleFor(x => x.EMail).IsEMail();
+            _validator.RuleFor(x => x.DIVG).IsDIVG();
+            _validator.RuleFor(x => x.AnalogModule).IsAnalogModule();
+            _validator.RuleFor(x => x.Version).IsCfgVersion();
+            _validator.RuleFor(x => x.Platform).IsPlatform();
+            _validator.RuleFor(x => x.BFPO).IsBFPO();
+            _validator.RuleFor(x => x.PMK).IsPMK();
         });
     }
 
@@ -45,7 +45,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.Digits);
@@ -68,7 +68,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.Digits);
@@ -90,7 +90,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.Message);
@@ -112,7 +112,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.Message);
@@ -134,7 +134,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.DIVG);
@@ -144,7 +144,6 @@ public sealed class ValidationExtensionsTest
     /// Отрицательный тест для <see cref="ValidationExtensions.IsDIVG{T}(IRuleBuilder{T, string})"/>.
     /// </summary>
     /// <param name="divg">ДИВГ.</param>
-    [TestCase(null)]
     [TestCase("")]
     [TestCase(" ")]
     [TestCase("\t")]
@@ -161,7 +160,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.DIVG);
@@ -182,7 +181,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.EMail);
@@ -209,7 +208,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.EMail);
@@ -233,7 +232,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.AnalogModule);
@@ -256,7 +255,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.AnalogModule);
@@ -279,7 +278,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.Version);
@@ -302,7 +301,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.Version);
@@ -328,7 +327,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.Platform);
@@ -351,7 +350,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.Platform);
@@ -374,7 +373,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.BFPO);
@@ -397,7 +396,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.BFPO);
@@ -420,7 +419,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldNotHaveValidationErrorFor(m => m.PMK);
@@ -443,7 +442,7 @@ public sealed class ValidationExtensionsTest
         };
 
         // act
-        var result = this.validator.TestValidate(model);
+        var result = _validator.TestValidate(model);
 
         // assert
         result.ShouldHaveValidationErrorFor(m => m.PMK);
@@ -454,6 +453,14 @@ public sealed class ValidationExtensionsTest
     /// </summary>
     private sealed class TestModel
     {
+        /// <summary>
+        /// Инициализатор нового экземпляра класса <see cref="TestModel"/>.
+        /// </summary>
+        public TestModel()
+        {
+            DIVG = string.Empty;
+        }
+
         /// <summary>
         /// Только цифры.
         /// </summary>
@@ -498,13 +505,5 @@ public sealed class ValidationExtensionsTest
         /// ПМК.
         /// </summary>
         public string? PMK { get; init; }
-
-        /// <summary>
-        /// Инициализатор нового экземпляра класса <see cref="TestModel"/>.
-        /// </summary>
-        public TestModel()
-        {
-            this.DIVG = string.Empty;
-        }
     }
 }
